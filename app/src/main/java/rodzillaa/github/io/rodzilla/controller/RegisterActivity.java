@@ -1,9 +1,11 @@
-package rodzillaa.github.io.rodzilla;
+package rodzillaa.github.io.rodzilla.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class WelcomeActivity extends AppCompatActivity {
+import rodzillaa.github.io.rodzilla.R;
+
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
