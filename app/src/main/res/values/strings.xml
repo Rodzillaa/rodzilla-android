@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Rodzilla</string>
+    <string name="rodentSightingsText">Number of Rodent Sightings Today!</string>
+    <string name="enterUsername">Enter Your Username</string>
+    <string name="enterPassword">Enter Your Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="loggedOut">You have successfully logged out.</string>
 </resources>
