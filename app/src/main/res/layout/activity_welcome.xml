@@ -10,8 +10,9 @@
     <TextView
         android:id="@+id/rodentSightingsNumber"
         android:layout_width="86dp"
-        android:layout_height="184dp"
+        android:layout_height="250dp"
         android:paddingTop="30dp"
+        android:paddingBottom="30dp"
         android:text="0"
         android:textSize="150sp"
         app:layout_constraintBottom_toTopOf="@+id/rodentSightingsTextView"

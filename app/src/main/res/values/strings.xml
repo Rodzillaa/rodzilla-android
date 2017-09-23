@@ -6,4 +6,5 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="loggedOut">You have successfully logged out.</string>
+    <string name="logout">Logout</string>
 </resources>
