@@ -10,8 +10,9 @@
     <TextView
         android:id="@+id/rodentSightingsNumber"
         android:layout_width="86dp"
-        android:layout_height="184dp"
+        android:layout_height="250dp"
         android:paddingTop="30dp"
+        android:paddingBottom="30dp"
         android:text="0"
         android:textSize="150sp"
         app:layout_constraintBottom_toTopOf="@+id/rodentSightingsTextView"
@@ -20,13 +21,16 @@
 
     <TextView
         android:id="@+id/rodentSightingsTextView"
-        android:layout_width="232dp"
-        android:layout_height="39dp"
+        android:layout_width="259dp"
+        android:layout_height="56dp"
         android:text="@string/rodentSightingsText"
+        android:layout_marginBottom="2dp"
+        android:textAlignment="center"
+        android:textSize="16dp"
         app:layout_constraintTop_toBottomOf="@+id/rodentSightingsNumber"
         app:layout_constraintBottom_toTopOf="@+id/usernameEnter"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
     <EditText
         android:id="@+id/usernameEnter"
         android:layout_width="wrap_content"
