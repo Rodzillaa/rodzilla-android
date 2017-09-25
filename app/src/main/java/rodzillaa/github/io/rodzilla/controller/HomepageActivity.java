@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import rodzillaa.github.io.rodzilla.R;
 
@@ -21,6 +22,8 @@ public class HomepageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent logoutIntent = new Intent(getBaseContext(), WelcomeActivity.class);
                 startActivity(logoutIntent);
+                Toast.makeText(getApplicationContext(), "Successfully logged out!",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
