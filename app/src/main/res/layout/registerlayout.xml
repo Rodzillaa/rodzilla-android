@@ -1,6 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="rodzillaa.github.io.rodzilla.controller.WelcomeActivity">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/registerAccountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="40sp"
+        android:ems="10"
+        android:textColor="#000000"
+        android:text="@string/registerNewAccount"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/nameEditText"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/registerNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:paddingTop="3dp"
+        android:text="@string/Name"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/usernameEditText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerAccountTextView" />
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="260sp"
+        android:layout_height="40sp"
+        android:ems="10"
+        android:hint="@string/enterName"
+        android:inputType="textPersonName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/registerAccountTextView"
+        app:layout_constraintBottom_toTopOf="@+id/usernameEditText" />
+
+
+    <TextView
+        android:id="@+id/registerUsernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:gravity="start"
+        android:paddingTop="2dp"
+        android:text="@string/Username"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/registerPasswordTextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/registerNameTextView" />
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="260sp"
+        android:layout_height="45sp"
+        android:ems="10"
+        android:hint="@string/enterAUsername"
+        android:inputType="textPersonName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameEditText"
+        app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
+        tools:layout_editor_absoluteX="155dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        tools:layout_editor_absoluteY="46dp" />
+
+
+    <TextView
+        android:id="@+id/registerPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="30sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:gravity="start"
+        android:text="@string/Password"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/usernameEditText" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="260sp"
+        android:layout_height="45sp"
+        android:ems="10"
+        android:hint="@string/enterAPassword"
+        android:inputType="textPassword"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameEditText"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        app:layout_constraintHorizontal_bias="1.0"/>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="180sp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#83c5ff"
+        android:text="@string/Register"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/cancelButton"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="180sp"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        app:layout_constraintLeft_toRightOf="@id/registerButton"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="15dp" />
+
+
+</android.support.constraint.ConstraintLayout>

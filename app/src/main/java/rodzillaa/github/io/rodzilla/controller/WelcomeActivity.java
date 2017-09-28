@@ -54,7 +54,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //route user to register screen.
-                Intent registerIntent = new Intent(WelcomeActivity.this, RegisterActivity.class);
+                Intent registerIntent = new Intent(getBaseContext(), RegisterActivity.class);
                 startActivity(registerIntent);
             }
         });
