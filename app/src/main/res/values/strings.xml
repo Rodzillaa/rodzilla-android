@@ -8,13 +8,19 @@
     <string name="loggedOut">You have successfully logged out.</string>
     <string name="logout">Logout</string>
     <string name="enterName">Enter Your Name</string>
+    <string name="enterEmail">Enter Your Email</string>
     <string name="registerNewAccount">Register a New Account</string>
     <string name="enterAUsername">Enter a Username</string>
     <string name="enterAPassword">Enter a Password</string>
     <string name="cancel">Cancel</string>
     <string name="Register">Register!</string>
     <string name="Name">Name:</string>
+    <string name="Email">Email:</string>
     <string name="Password">Password:</string>
     <string name="Username">Username:</string>
+    <string name="User">User</string>
+    <string name="Admin">Admin</string>
+    <string name="accountType">Account Type:</string>
+
 
 </resources>

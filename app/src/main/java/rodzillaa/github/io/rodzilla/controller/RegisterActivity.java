@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 
 import rodzillaa.github.io.rodzilla.R;
 
@@ -29,11 +30,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 //Cancel Registration and direct user back to welcome page
                 Intent cancelIntent = new Intent(getBaseContext(), WelcomeActivity.class);
                 startActivity(cancelIntent);
             }
         });
+
+
     }
 }
