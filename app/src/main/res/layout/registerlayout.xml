@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/registerAccountTextView"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:textSize="22sp"
         android:textColor="#000000"
         android:text="@string/registerNewAccount"
@@ -26,20 +26,22 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/registerAccountTextView"
+        app:layout_constraintBottom_toTopOf="@+id/registerEmailTextView"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="10dp" />
 
     <EditText
         android:id="@+id/nameEditText"
         android:layout_width="260dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:hint="@string/enterName"
         android:inputType="textPersonName"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/registerNameTextView"
         app:layout_constraintTop_toBottomOf="@+id/registerAccountTextView"
-        app:layout_constraintBottom_toTopOf="@+id/registerEmailTextView" />
+        app:layout_constraintBottom_toTopOf="@+id/registerEmailTextView"
+        app:layout_constraintHorizontal_bias="1.0"/>
 
     <TextView
         android:id="@+id/registerEmailTextView"
@@ -51,18 +53,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerNameTextView"
         app:layout_constraintBottom_toTopOf="@+id/registerUsernameTextView"
-        app:layout_constraintRight_toLeftOf="@+id/emailEditText"/>
+        android:layout_marginLeft="8dp" />
 
     <EditText
         android:id="@+id/emailEditText"
         android:layout_width="260dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:hint="@string/enterEmail"
         android:inputType="textPersonName"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/registerEmailTextView"
-        app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/nameEditText"
+        android:layout_marginLeft="10dp" />
 
     <TextView
         android:id="@+id/registerUsernameTextView"
@@ -76,7 +78,9 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditText"
+        app:layout_constraintBottom_toTopOf="@+id/registerPasswordTextView"
         app:layout_constraintRight_toLeftOf="@+id/usernameEditText"
+        app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginStart="10dp" />
 
     <EditText
@@ -88,7 +92,7 @@
         android:inputType="textPersonName"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditText"
-        app:layout_constraintLeft_toRightOf="@+id/registerUsernameTextView"/>
+        android:layout_marginTop="0dp" />
 
     <TextView
         android:id="@+id/registerPasswordTextView"
@@ -112,12 +116,14 @@
         android:hint="@string/enterAPassword"
         android:inputType="textPassword"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameEditText"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp" />
 
     <TextView
         android:id="@+id/userAdminTextView"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="7dp"
         android:gravity="start"
@@ -126,21 +132,23 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
-
         android:layout_marginStart="10dp" />
 
     <Spinner
         android:id="@+id/userAdminspinner"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/userAdminTextView"
-        app:layout_constraintTop_toBottomOf="@id/passwordEditText" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordEditText"
+        android:layout_marginTop="11dp"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#83c5ff"
         android:text="@string/Register"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -151,8 +159,9 @@
         android:id="@+id/cancelButton"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/cancel"
         app:layout_constraintLeft_toRightOf="@+id/registerButton"
-        app:layout_constraintTop_toBottomOf="@+id/userAdminTextView"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userAdminTextView" />
 </android.support.constraint.ConstraintLayout>
