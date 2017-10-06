@@ -9,6 +9,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 import rodzillaa.github.io.rodzilla.R;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -32,20 +45,16 @@ public class WelcomeActivity extends AppCompatActivity {
                 EditText username = (EditText) findViewById(R.id.usernameEnter);
                 EditText password = (EditText) findViewById(R.id.passwordEnter);
 
-                String usernameTest = "user";
-                String passwordTest = "pass";
-
-                Intent loginIntent = new Intent(getBaseContext(), HomepageActivity.class);
                 //Validate that username and password matches a pair in the database
-                Log.d(TAG, "Inside the loginButton's setOn");
-                if (username.getText().toString().equals(usernameTest) &&
-                        password.getText().toString().equals(passwordTest)) {
-                    startActivity(loginIntent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Username or Password is incorrect!",
-                            Toast.LENGTH_SHORT).show();
+                RequestBody formBody = new FormBody.Builder()
+                        .add("username", username.getText().toString())
+                        .add("password", password.getText().toString())
+                        .build();
+                try {
+                    post("http://143.215.94.175:9000/checkUser", formBody);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
             }
 
         });
@@ -59,5 +68,46 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    protected void post(String url, RequestBody requestBody) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = requestBody;
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override public void onResponse(Call call, Response response) throws IOException {
+                try (ResponseBody responseBody = response.body()) {
+                    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                    String resp = responseBody.string();
+                    try {
+                        JSONObject res = new JSONObject(resp);
+                        if (res.getInt("status") == 1) {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Intent loginIntent = new Intent(getBaseContext(), HomepageActivity.class);
+                                    startActivity(loginIntent);
+                                }
+                            });
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Username or Password is incorrect!",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 }
