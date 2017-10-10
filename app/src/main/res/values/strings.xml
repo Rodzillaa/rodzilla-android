@@ -17,5 +17,6 @@
     <string name="Password">Password:</string>
     <string name="Admin">Admin:</string>
     <string name="Username">Username:</string>
+    <string name="ListofRecentRatSightings">List of Recent Rat Sightings</string>
 
 </resources>

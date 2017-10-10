@@ -15,7 +15,16 @@ public class HomepageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+        Button recentRatSightingsButton = (Button) findViewById(R.id.listOfRatSightingsButton);
         Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        recentRatSightingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent recentRatSightingsIntent = new Intent(getBaseContext(), RecentRatSightingsActivity.class);
+                startActivity(recentRatSightingsIntent);
+            }
+        });
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,6 +35,5 @@ public class HomepageActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }
