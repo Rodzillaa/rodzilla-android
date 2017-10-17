@@ -14,24 +14,14 @@ import java.util.ArrayList;
  */
 
 public class RatSightingDatabase {
-    private static RatSightingDatabase sRatSightingDatabase;
-    private Context mAppContext;
 
-    private ArrayList<RatSighting> mRatSightings;
+    private static ArrayList<RatSighting> mRatSightings = new ArrayList<>();
 
-    private RatSightingDatabase(Context appContext) {
-        mAppContext = mAppContext;
-        mRatSightings = new ArrayList<RatSighting>();
+    public static void addSighting(RatSighting r) {
+        mRatSightings.add(r);
     }
 
-    public static RatSightingDatabase get(Context c) {
-        if (sRatSightingDatabase == null) {
-            sRatSightingDatabase = new RatSightingDatabase(c.getApplicationContext());
-        }
-        return sRatSightingDatabase;
-    }
-
-    public ArrayList<RatSighting> getRatSightings() {
+    public static ArrayList<RatSighting> getRatSightings() {
         return mRatSightings;
     }
 }

@@ -1,12 +1,23 @@
 package rodzillaa.github.io.rodzilla.controller;
 
 import android.os.Bundle;
+
+import okhttp3.FormBody;
+import okhttp3.RequestBody;
 import rodzillaa.github.io.rodzilla.R;
+import rodzillaa.github.io.rodzilla.model.RatSighting;
+import rodzillaa.github.io.rodzilla.model.RatSightingDatabase;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.io.IOException;
 
 public class RecentRatSightingsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
@@ -26,11 +37,9 @@ public class RecentRatSightingsActivity extends AppCompatActivity {
         // use a linear layout manager
         mRecyclerViewLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mRecyclerViewLayoutManager);
-
-        // specify an adapter (see also next example)
-        //myDataset is a temporary dataset
-        String[] myDataset = new String[10];
-        mRecyclerViewAdapter = new RecyclerViewAdapter(myDataset);
+        mRecyclerViewAdapter = new RecyclerViewAdapter(RatSightingDatabase.getRatSightings(),
+                mRecyclerView, getBaseContext());
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
+
     }
 }
