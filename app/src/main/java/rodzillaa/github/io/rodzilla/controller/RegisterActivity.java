@@ -75,6 +75,12 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Send post request to web api to insert user into system
+     * @param url
+     * @param requestBody
+     * @throws IOException
+     */
     protected void post(String url, RequestBody requestBody) throws IOException {
         OkHttpClient client = new OkHttpClient();
         RequestBody body = requestBody;

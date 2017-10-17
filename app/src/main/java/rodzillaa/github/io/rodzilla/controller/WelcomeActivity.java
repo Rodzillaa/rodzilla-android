@@ -70,6 +70,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Check if user credentials are correct
+     * @param url
+     * @param requestBody
+     * @throws IOException
+     */
     protected void post(String url, RequestBody requestBody) throws IOException {
         OkHttpClient client = new OkHttpClient();
         RequestBody body = requestBody;
