@@ -8,12 +8,24 @@
 
 
     <Button
+        android:id="@+id/listOfRatSightingsButton"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:text="@string/ListofRecentRatSightings"
+        app:layout_constraintBottom_toTopOf="@+id/logoutButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
         android:id="@+id/logoutButton"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:text="@string/logout"
+        android:backgroundTint="#ff8389"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
 
 
 </android.support.constraint.ConstraintLayout>
