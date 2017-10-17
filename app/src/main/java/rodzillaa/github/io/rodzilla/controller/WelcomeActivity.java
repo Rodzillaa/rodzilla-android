@@ -1,6 +1,7 @@
 package rodzillaa.github.io.rodzilla.controller;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -23,6 +25,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import rodzillaa.github.io.rodzilla.R;
+import rodzillaa.github.io.rodzilla.model.RatSighting;
+import rodzillaa.github.io.rodzilla.model.RatSightingDatabase;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -51,7 +55,7 @@ public class WelcomeActivity extends AppCompatActivity {
                         .add("password", password.getText().toString())
                         .build();
                 try {
-                    post("http://143.215.94.175:9000/checkUser", formBody);
+                    post("http://143.215.91.97:9000/checkUser", formBody);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -95,6 +99,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     try {
                         JSONObject res = new JSONObject(resp);
                         if (res.getInt("status") == 1) {
+                            new RatDataFiller().execute("");
                             runOnUiThread(new Runnable() {
                                 public void run() {
                                     Intent loginIntent = new Intent(getBaseContext(), HomepageActivity.class);
@@ -115,5 +120,57 @@ public class WelcomeActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private class RatDataFiller extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url("http://143.215.91.97:9000/showRecords")
+                    .build();
+
+            String body = null;
+            Response response = null;
+            try {
+                response = client.newCall(request).execute();
+                body = response.body().string();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return body;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                JSONObject obj = new JSONObject(result);
+                Iterator<String> itr = obj.keys();
+                while (itr.hasNext()) {
+                    String docID = itr.next();
+                    RatSighting temp = new RatSighting();
+                    temp.address = obj.getJSONObject(docID).getString("address");
+                    temp.borough = obj.getJSONObject(docID).getString("borough");
+                    temp.city = obj.getJSONObject(docID).getString("city");
+                    temp.date = obj.getJSONObject(docID).getString("date");
+                    temp.key = obj.getJSONObject(docID).getString("key");
+                    temp.latitude = obj.getJSONObject(docID).getString("latitude");
+                    temp.location_type = obj.getJSONObject(docID).getString("location_type");
+                    temp.longitude = obj.getJSONObject(docID).getString("longitude");
+                    temp.zip = obj.getJSONObject(docID).getString("zip");
+                    RatSightingDatabase.addSighting(temp);
+                }
+                Log.d(TAG, RatSightingDatabase.getRatSightings().size()+"");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void onPreExecute() {}
+
+        @Override
+        protected void onProgressUpdate(Void... values) {}
     }
 }
