@@ -18,5 +18,16 @@
     <string name="Admin">Admin:</string>
     <string name="Username">Username:</string>
     <string name="ListofRecentRatSightings">List of Recent Rat Sightings</string>
+    <string name="SubmitARatSighting">Submit a Rat Sighting!</string>
+    <string name="TellUsAboutRat">Tell us about where you saw the rat.</string>
+    <string name="EnterLocationType">Enter the Location Type</string>
+    <string name="streetName">Street Name:</string>
+    <string name="EnterStreetName">Enter the Street Name</string>
+    <string name="cityTextView">City:</string>
+    <string name="EnterCity">Enter the City</string>
+    <string name="EnterZipCode">Enter the Zip code</string>
+    <string name="zipCodeTextView">Zip code:</string>
+    <string name="boroughTextView">Enter the Borough</string>
+    <string name="submit">Submit</string>
 
 </resources>

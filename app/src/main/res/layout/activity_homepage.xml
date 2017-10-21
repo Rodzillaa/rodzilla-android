@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context="rodzillaa.github.io.rodzilla.controller.WelcomeActivity">
 
+    <Button
+        android:id="@+id/submitARatSightingButton"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:text="@string/SubmitARatSighting"
+        app:layout_constraintBottom_toTopOf="@+id/listOfRatSightingsButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/listOfRatSightingsButton"

@@ -15,8 +15,17 @@ public class HomepageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+        Button submitARatSightingButton = (Button) findViewById(R.id.submitARatSightingButton);
         Button recentRatSightingsButton = (Button) findViewById(R.id.listOfRatSightingsButton);
         Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        submitARatSightingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent submitARatSightingIntent = new Intent(getBaseContext(), SubmitARatSightingActivity.class);
+                startActivity(submitARatSightingIntent);
+            }
+        });
 
         recentRatSightingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
