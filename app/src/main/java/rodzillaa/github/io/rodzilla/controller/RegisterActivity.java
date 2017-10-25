@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                     .add("isAdmin", admin ? "Y" : "N")
                     .build();
                 try {
-                    post("http://143.215.91.97:9000/addUser", formBody);
+                    post("http://143.215.87.60:9000/addUser", formBody);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
