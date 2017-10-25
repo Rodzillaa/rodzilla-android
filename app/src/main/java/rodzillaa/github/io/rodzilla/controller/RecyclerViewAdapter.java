@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rodzillaa.github.io.rodzilla.R;
 import rodzillaa.github.io.rodzilla.model.RatSighting;
@@ -17,7 +18,7 @@ import rodzillaa.github.io.rodzilla.model.RatSighting;
 import static android.content.ContentValues.TAG;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private ArrayList<RatSighting> mDataset;
+    private List<RatSighting> mDataset;
     private RecyclerView recyclerView;
     private Context context;
 
@@ -52,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public RecyclerViewAdapter(ArrayList<RatSighting> myDataset, RecyclerView recyclerView, Context c) {
+    public RecyclerViewAdapter(List<RatSighting> myDataset, RecyclerView recyclerView, Context c) {
         this.mDataset = myDataset;
         this.recyclerView = recyclerView;
         this.context = c;

@@ -55,7 +55,7 @@ public class WelcomeActivity extends AppCompatActivity {
                         .add("password", password.getText().toString())
                         .build();
                 try {
-                    post("http://143.215.91.97:9000/checkUser", formBody);
+                    post("http:///143.215.87.60:9000/checkUser", formBody);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -128,7 +128,7 @@ public class WelcomeActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url("http://143.215.91.97:9000/showRecords")
+                    .url("http://143.215.87.60:9000/showRecords")
                     .build();
 
             String body = null;
