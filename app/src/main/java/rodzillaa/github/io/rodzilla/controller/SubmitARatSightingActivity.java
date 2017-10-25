@@ -1,7 +1,13 @@
 package rodzillaa.github.io.rodzilla.controller;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
+import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
@@ -71,12 +78,26 @@ public class SubmitARatSightingActivity extends AppCompatActivity {
                 EditText city = (EditText) findViewById(R.id.cityEditText);
                 EditText zipcode = (EditText) findViewById(R.id.zipcodeEditText);
 
+                LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+                Double longitude = 0.0;
+                Double latitude = 0.0;
+                if ( Build.VERSION.SDK_INT >= 23 &&
+                        ContextCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
+                        ContextCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    longitude = location.getLongitude();
+                    latitude = location.getLatitude();
+                }
+
                 RequestBody formBody = new FormBody.Builder()
+                        .add("Date", Calendar.getInstance().toString())
                         .add("Location Type", locationTypeSpinner.getSelectedItem().toString())
                         .add("Street", streetName.getText().toString())
                         .add("City", city.getText().toString())
                         .add("Zip Code", zipcode.getText().toString())
                         .add("Borough", boroughSpinner.getSelectedItem().toString())
+                        .add("Longitude", longitude.toString())
+                        .add("Latitude", latitude.toString())
                         .build();
                 try {
                     post("http://143.215.91.97:9000/addReport", formBody);
