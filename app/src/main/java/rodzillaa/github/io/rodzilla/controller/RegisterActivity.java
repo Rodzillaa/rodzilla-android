@@ -28,6 +28,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import rodzillaa.github.io.rodzilla.R;
+import rodzillaa.github.io.rodzilla.utils.APIUtil;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -58,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                     .add("isAdmin", admin ? "Y" : "N")
                     .build();
                 try {
-                    post("http://143.215.87.60:9000/addUser", formBody);
+                    post(APIUtil.SERVER_URL+"/addUser", formBody);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

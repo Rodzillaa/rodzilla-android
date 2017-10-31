@@ -1,8 +1,12 @@
 package rodzillaa.github.io.rodzilla.model;
 
 import android.content.Context;
+import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,10 +21,19 @@ import java.util.List;
 
 public class RatSightingDatabase {
 
+    private static final String TAG = "RatSightingDatabase";
     private static List<RatSighting> mRatSightings = new LinkedList<>();
 
     public static void addSighting(RatSighting r) {
-        mRatSightings.add(0, r);
+        String myStrDate = r.date.substring(0, r.date.length()-2).trim();
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        try {
+            Date date = format.parse(myStrDate);
+            r.timestamp = date.getTime();
+            mRatSightings.add(0, r);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public static List<RatSighting> getRatSightings() {

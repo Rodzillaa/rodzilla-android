@@ -27,6 +27,7 @@ import okhttp3.ResponseBody;
 import rodzillaa.github.io.rodzilla.R;
 import rodzillaa.github.io.rodzilla.model.RatSighting;
 import rodzillaa.github.io.rodzilla.model.RatSightingDatabase;
+import rodzillaa.github.io.rodzilla.utils.APIUtil;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -55,7 +56,7 @@ public class WelcomeActivity extends AppCompatActivity {
                         .add("password", password.getText().toString())
                         .build();
                 try {
-                    post("http:///143.215.87.60:9000/checkUser", formBody);
+                    post(APIUtil.SERVER_URL+"/checkUser", formBody);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -128,7 +129,7 @@ public class WelcomeActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url("http://143.215.87.60:9000/showRecords")
+                    .url(APIUtil.SERVER_URL+"/showRecords")
                     .build();
 
             String body = null;
