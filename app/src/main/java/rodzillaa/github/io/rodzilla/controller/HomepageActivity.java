@@ -16,8 +16,17 @@ public class HomepageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         Button submitARatSightingButton = (Button) findViewById(R.id.submitARatSightingButton);
+        Button mapViewButton = (Button) findViewById(R.id.mapViewButton);
         Button recentRatSightingsButton = (Button) findViewById(R.id.listOfRatSightingsButton);
         Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        mapViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mapViewIntent = new Intent(getBaseContext(), MapsActivity.class);
+                startActivity(mapViewIntent);
+            }
+        });
 
         submitARatSightingButton.setOnClickListener(new View.OnClickListener() {
             @Override

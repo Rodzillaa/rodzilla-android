@@ -30,6 +30,7 @@ import rodzillaa.github.io.rodzilla.model.Borough;
 import rodzillaa.github.io.rodzilla.model.LocationType;
 import rodzillaa.github.io.rodzilla.model.RatSighting;
 import rodzillaa.github.io.rodzilla.model.RatSightingDatabase;
+import rodzillaa.github.io.rodzilla.utils.APIUtil;
 
 public class SubmitARatSightingActivity extends AppCompatActivity {
     @Override
@@ -76,7 +77,7 @@ public class SubmitARatSightingActivity extends AppCompatActivity {
                 EditText streetEditText = (EditText) findViewById(R.id.streetEditText);
                 EditText cityEditText = (EditText) findViewById(R.id.cityEditText);
                 String key = UUID.randomUUID().toString();
-                String date = (new Date()).toString();
+                String date = "10/31/2017 12:00:00 AM";
                 RequestBody formBody = new FormBody.Builder()
                         .add("key", key)
                         .add("date", date)
@@ -85,8 +86,8 @@ public class SubmitARatSightingActivity extends AppCompatActivity {
                         .add("address", streetEditText.getText().toString())
                         .add("city", cityEditText.getText().toString())
                         .add("borough", boroughSpinner.getSelectedItem().toString())
-                        .add("latitude", "UNKNOWN")
-                        .add("longitude", "UNKNOWN")
+                        .add("latitude", "-34")
+                        .add("longitude", "151")
                         .build();
                 RatSighting temp = new RatSighting();
                 temp.address = streetEditText.getText().toString();
@@ -94,13 +95,13 @@ public class SubmitARatSightingActivity extends AppCompatActivity {
                 temp.city = cityEditText.getText().toString();
                 temp.date = date;
                 temp.key = key;
-                temp.latitude = "UNKNOWN";
+                temp.latitude = "-34";
                 temp.location_type = locationTypeSpinner.getSelectedItem().toString();
-                temp.longitude = "UNKNOWN";
+                temp.longitude = "151";
                 temp.zip = zipcodeEditText.getText().toString();
                 RatSightingDatabase.addSighting(temp);
                 try {
-                    post("http:///143.215.87.60:9000/checkUser", formBody);
+                    post(APIUtil.SERVER_URL+"/checkUser", formBody);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

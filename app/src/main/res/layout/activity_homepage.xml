@@ -7,6 +7,16 @@
     tools:context="rodzillaa.github.io.rodzilla.controller.WelcomeActivity">
 
     <Button
+        android:id="@+id/mapViewButton"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:text="@string/view_map"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/submitARatSightingButton" />
+
+    <Button
         android:id="@+id/submitARatSightingButton"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
@@ -33,7 +43,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
-
 
 
 </android.support.constraint.ConstraintLayout>

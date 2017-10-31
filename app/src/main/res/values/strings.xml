@@ -29,5 +29,7 @@
     <string name="zipCodeTextView">Zip code:</string>
     <string name="boroughTextView">Enter the Borough</string>
     <string name="submit">Submit</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="view_map">View Map</string>
 
 </resources>
