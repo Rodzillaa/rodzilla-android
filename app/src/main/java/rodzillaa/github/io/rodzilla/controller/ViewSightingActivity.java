@@ -7,6 +7,10 @@ import android.widget.TextView;
 
 import rodzillaa.github.io.rodzilla.R;
 
+/**
+ * Activity that displays the information of multiple
+ * individual RatSightings in a formatted view.
+ */
 public class ViewSightingActivity extends AppCompatActivity {
 
     private static final String TAG = "ViewSightingActivity";

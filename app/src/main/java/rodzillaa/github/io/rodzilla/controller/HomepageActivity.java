@@ -9,6 +9,11 @@ import android.widget.Toast;
 
 import rodzillaa.github.io.rodzilla.R;
 
+/**
+ * Activity class that provides the functionality
+ * and display for the application's homepage
+ * (after the user logs in).
+ */
 public class HomepageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

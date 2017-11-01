@@ -23,6 +23,11 @@ import rodzillaa.github.io.rodzilla.R;
 import rodzillaa.github.io.rodzilla.model.RatSighting;
 import rodzillaa.github.io.rodzilla.model.RatSightingDatabase;
 
+/**
+ * Activity class that allows the user of the app
+ * to view a Google Map that presents a variety of
+ * informational displays of rat sightings.
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private static final String TAG = "MapsActivity";
@@ -92,6 +97,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * If Google Play services is not installed on the device, the user will be prompted to install
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
+     *
+     * @param googleMap GoogleMap object to display.
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -99,6 +106,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         addMarkers();
     }
 
+    /**
+     * Method that adds markers that represent rat sightings
+     * to the map.
+     */
     private void addMarkers() {
         List<RatSighting> list = RatSightingDatabase.getRatSightings();
         LatLng temp = new LatLng(-34, 151);
@@ -113,6 +124,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
     }
 
+    /**
+     * Method that allows the user to filter rat sighting
+     * information on the map by date.
+     */
     private void filterByDate() {
         mMap.clear();
         List<RatSighting> list = RatSightingDatabase.getRatSightings();

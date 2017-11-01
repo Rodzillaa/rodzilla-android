@@ -19,6 +19,9 @@ import android.widget.TextView;
 
 import java.io.IOException;
 
+/**
+ * Activity to display recent rat sightings.
+ */
 public class RecentRatSightingsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mRecyclerViewAdapter;

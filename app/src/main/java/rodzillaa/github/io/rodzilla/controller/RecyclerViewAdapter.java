@@ -17,14 +17,20 @@ import rodzillaa.github.io.rodzilla.model.RatSighting;
 
 import static android.content.ContentValues.TAG;
 
+/**
+ * Customized ReclyclerViewAdapter to format RatSightings
+ * in list view.
+ */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private List<RatSighting> mDataset;
     private RecyclerView recyclerView;
     private Context context;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+    /**
+     * Class that provides a reference to the views for each data item.
+     * Complex data items may need more than one view per item, and
+     * you provide access to all the views for a data item in a view holder.
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView mTextView;
@@ -34,6 +40,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
+    /**
+     * Class that implements a click listener and is
+     * customized to include rat sighting data fields.
+     */
     class SightingOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -53,6 +63,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
+    /**
+     * Constructor for the RecyclerViewAdapter.
+     *
+     * @param myDataset list of RatSighting objects (the dataset).
+     * @param recyclerView recyclerView object to be used.
+     * @param c context to which the method invocation should be applied.
+     */
     public RecyclerViewAdapter(List<RatSighting> myDataset, RecyclerView recyclerView, Context c) {
         this.mDataset = myDataset;
         this.recyclerView = recyclerView;

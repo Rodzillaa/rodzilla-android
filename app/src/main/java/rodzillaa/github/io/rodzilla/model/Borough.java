@@ -1,5 +1,9 @@
 package rodzillaa.github.io.rodzilla.model;
 
+/**
+ * Enum class consisting of New York Borough
+ * classifications.
+ */
 public enum Borough {
     MANHATTAN("Manhattan"),
     STATENISLAND("Staten Island"),
@@ -7,13 +11,18 @@ public enum Borough {
     BROOKLYN("Brooklyn"),
     BRONX("Bronx");
 
-    private final String ABBREV;
+    private final String NAME;
 
-    Borough(final String ABBREV) {
-        this.ABBREV = ABBREV;
+    /**
+     * Constructor for Borough enum.
+     * @param NAME full name of the Borough.
+     */
+    Borough(final String NAME) {
+        this.NAME = NAME;
     }
 
+    @Override
     public String toString() {
-        return ABBREV;
+        return NAME;
     }
 }

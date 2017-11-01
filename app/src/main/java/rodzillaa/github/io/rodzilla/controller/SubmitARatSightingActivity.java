@@ -32,6 +32,12 @@ import rodzillaa.github.io.rodzilla.model.RatSighting;
 import rodzillaa.github.io.rodzilla.model.RatSightingDatabase;
 import rodzillaa.github.io.rodzilla.utils.APIUtil;
 
+/**
+ * Activity class that provides the functionality for
+ * the Submit-A-Rat-Sighting page in the mobile app.
+ * This view allows users to enter information about a
+ * rat sighting.
+ */
 public class SubmitARatSightingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +117,14 @@ public class SubmitARatSightingActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * A method that posts the rat report information to
+     * the database on the server-side.
+     *
+     * @param url
+     * @param requestBody
+     * @throws IOException
+     */
     protected void post(String url, RequestBody requestBody) throws IOException {
         OkHttpClient client = new OkHttpClient();
         RequestBody body = requestBody;

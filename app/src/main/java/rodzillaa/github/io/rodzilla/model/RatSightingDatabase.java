@@ -18,12 +18,19 @@ import java.util.List;
  * This is a singleton (a class that only allows one
  * instance of itself to be created).
  */
-
 public class RatSightingDatabase {
 
     private static final String TAG = "RatSightingDatabase";
     private static List<RatSighting> mRatSightings = new LinkedList<>();
 
+    /**
+     * Method that adds a RatSighting object to the
+     * RatSightingDatabase. Contains a date and a
+     * timestamp.
+     *
+     * @param r RatSighting object to be added to the
+     *          database.
+     */
     public static void addSighting(RatSighting r) {
         String myStrDate = r.date.substring(0, r.date.length()-2).trim();
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -36,6 +43,13 @@ public class RatSightingDatabase {
         }
     }
 
+    /**
+     * Method that returns a list of RatSighting objects that
+     * were previously added to the RatSighting database.
+     *
+     * @return a LinkedList of RatSighting objects that have
+     * been submitted to the database.
+     */
     public static List<RatSighting> getRatSightings() {
         return mRatSightings;
     }

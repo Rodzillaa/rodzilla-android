@@ -5,6 +5,5 @@ import android.app.ListFragment;
 /**
  * Fragment for Rat Sighting List.
  */
-
 public class RatSightingListFragment extends ListFragment {
 }
