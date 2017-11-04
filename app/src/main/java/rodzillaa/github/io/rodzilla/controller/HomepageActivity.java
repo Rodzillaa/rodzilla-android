@@ -21,6 +21,8 @@ public class HomepageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         Button submitARatSightingButton = (Button) findViewById(R.id.submitARatSightingButton);
+
+        Button viewDataGraphsButton =(Button) findViewById(R.id.dataGraphs);
         Button mapViewButton = (Button) findViewById(R.id.mapViewButton);
         Button recentRatSightingsButton = (Button) findViewById(R.id.listOfRatSightingsButton);
         Button logoutButton = (Button) findViewById(R.id.logoutButton);
@@ -38,6 +40,14 @@ public class HomepageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent submitARatSightingIntent = new Intent(getBaseContext(), SubmitARatSightingActivity.class);
                 startActivity(submitARatSightingIntent);
+            }
+        });
+
+        viewDataGraphsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent dataGraphsIntent = new Intent(getBaseContext(), DataGraphsActivity.class);
+                startActivity(dataGraphsIntent);
             }
         });
 
