@@ -29,6 +29,10 @@ import rodzillaa.github.io.rodzilla.model.RatSighting;
 import rodzillaa.github.io.rodzilla.model.RatSightingDatabase;
 import rodzillaa.github.io.rodzilla.utils.APIUtil;
 
+/**
+ * Activity class that provides the functionality
+ * for the mobile application's welcome screen.
+ */
 public class WelcomeActivity extends AppCompatActivity {
 
     private static final String TAG = "WelcomeActivity";
@@ -123,6 +127,10 @@ public class WelcomeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Private class that contains methods to handle
+     * back-end rat sighting data
+     */
     private class RatDataFiller extends AsyncTask<String, Void, String> {
 
         @Override

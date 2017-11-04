@@ -30,6 +30,10 @@ import okhttp3.ResponseBody;
 import rodzillaa.github.io.rodzilla.R;
 import rodzillaa.github.io.rodzilla.utils.APIUtil;
 
+/**
+ * Activity class that allows a new user to register
+ * for a new account.
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     public static final MediaType JSON
@@ -78,6 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     /**
      * Send post request to web api to insert user into system
+     *
      * @param url
      * @param requestBody
      * @throws IOException
