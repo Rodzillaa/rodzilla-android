@@ -50,12 +50,12 @@
         android:hint="@string/enterPassword"
         android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@+id/usernameEnter"
-        app:layout_constraintBottom_toTopOf="@+id/Loginbuttonwelcome"
+        app:layout_constraintBottom_toTopOf="@+id/loginbuttonwelcome"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <Button
-        android:id="@+id/Loginbuttonwelcome"
+        android:id="@+id/loginbuttonwelcome"
         android:layout_width="250dp"
         android:layout_height="53dp"
         android:text="@string/login"
@@ -70,7 +70,7 @@
         android:layout_width="250dp"
         android:layout_height="53dp"
         android:text="@string/register"
-        app:layout_constraintTop_toBottomOf="@+id/Loginbuttonwelcome"
+        app:layout_constraintTop_toBottomOf="@+id/loginbuttonwelcome"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 

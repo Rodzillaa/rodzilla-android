@@ -121,9 +121,11 @@ public class SubmitARatSightingActivity extends AppCompatActivity {
      * A method that posts the rat report information to
      * the database on the server-side.
      *
-     * @param url
-     * @param requestBody
-     * @throws IOException
+     * @param url the server url that the user's credentials are
+     *            checked against
+     * @param requestBody RequestBody object that contains the username
+     *                    and password
+     * @throws IOException a network fails or when a socket is refused
      */
     protected void post(String url, RequestBody requestBody) throws IOException {
         OkHttpClient client = new OkHttpClient();

@@ -42,10 +42,10 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        Button loginButton = (Button) findViewById(R.id.Loginbuttonwelcome);
+        Button loginButton = (Button) findViewById(R.id.loginbuttonwelcome);
         Button registerButton = (Button) findViewById(R.id.registerbuttonwelcome);
 
-        Log.d(TAG, "outside login onclicklistener");
+        Log.d(TAG, "outside login onClickListener");
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,9 +81,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
     /**
      * Check if user credentials are correct
-     * @param url
-     * @param requestBody
-     * @throws IOException
+     *
+     * @param url the server url that the user's credentials are
+     *            checked against
+     * @param requestBody RequestBody object that contains the username
+     *                    and password
+     * @throws IOException a network fails or when a socket is refused
      */
     protected void post(String url, RequestBody requestBody) throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -93,11 +96,13 @@ public class WelcomeActivity extends AppCompatActivity {
                 .post(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {
-            @Override public void onFailure(Call call, IOException e) {
+            @Override
+            public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
             }
 
-            @Override public void onResponse(Call call, Response response) throws IOException {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
                     if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
                     String resp = responseBody.string();
