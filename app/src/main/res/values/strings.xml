@@ -31,5 +31,6 @@
     <string name="submit">Submit</string>
     <string name="title_activity_maps">Map</string>
     <string name="view_map">View Map</string>
+    <string name="viewDataGraphs">View Data Graphs</string>
 
 </resources>
