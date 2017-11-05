@@ -62,11 +62,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+    // Provide a suitable constructor (depends on the kind of data set)
     /**
      * Constructor for the RecyclerViewAdapter.
      *
-     * @param myDataset list of RatSighting objects (the dataset).
+     * @param myDataset list of RatSighting objects (the data set).
      * @param recyclerView recyclerView object to be used.
      * @param c context to which the method invocation should be applied.
      */
@@ -95,7 +95,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    // Return the size of your data set (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.size();
