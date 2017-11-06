@@ -14,9 +14,7 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import rodzillaa.github.io.rodzilla.R;
+import rodzillaa.github.io.rodzilla.model.GraphDateFormatter;
 import rodzillaa.github.io.rodzilla.model.RatSighting;
 import rodzillaa.github.io.rodzilla.model.RatSightingDatabase;
 
@@ -43,7 +42,7 @@ public class DataGraphsActivity extends AppCompatActivity
                           int monthOfYearEnd,
                           int dayOfMonthEnd) {
         String date = "You picked the following date: From- "
-            + (++monthOfYear) + dayOfMonth + "/" + "/" + year + " To "
+            + (++monthOfYear) + "/" + dayOfMonth + "/" + year + " To "
                 + (++monthOfYearEnd) + "/" + dayOfMonthEnd + "/" + yearEnd;
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
         try {
@@ -97,15 +96,15 @@ public class DataGraphsActivity extends AppCompatActivity
             int rYear = calendar.get(Calendar.YEAR);
             int rMonth = calendar.get(Calendar.MONTH);
             int rDay = calendar.get(Calendar.DAY_OF_MONTH);
-//            if (sighting.getDate().compareTo(begin) >= 0
-//                    && sighting.getDate().compareTo(end) <= 0) {
+            if (sighting.getDate().compareTo(begin) >= 0
+                    && sighting.getDate().compareTo(end) <= 0) {
                 if (ratCount.containsKey("" + rYear + rMonth + rDay)) {
                     ratCount.put("" + rYear + rMonth + rDay,
                             ratCount.get("" + rYear + rMonth + rDay) + 1);
                 } else {
                     ratCount.put("" + rYear + rMonth + rDay, 1);
                 }
-//            }
+            }
         }
 
           //iterate over each rat sighting and store it in the below ArrayList object
@@ -122,13 +121,19 @@ public class DataGraphsActivity extends AppCompatActivity
         }
 
         BarDataSet dataSet = new BarDataSet(entries, "Rat Sightings");
-        //dataSet.setColor(R.color.lightblue);
+        dataSet.setColor(R.color.lightblue);
 
         BarData barData = new BarData(dataSet);
 
-        XAxis xAxis = ratSightingsBarChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        //xAxis.setValueFormatter(new MyCustomFormatter());
+        SimpleDateFormat dateToNum = new SimpleDateFormat("yyyyMMdd");
+        ratSightingsBarChart.setVisibleXRange(Integer.parseInt(dateToNum.format(begin)),
+                Integer.parseInt(dateToNum.format(end)));
+
+//        XAxis xAxis = ratSightingsBarChart.getXAxis();
+//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+//        IAxisValueFormatter iavf = new GraphDateFormatter();
+//        xAxis.setValueFormatter(iavf);
+
 
         ratSightingsBarChart.setData(barData);
         ratSightingsBarChart.invalidate(); // refresh
