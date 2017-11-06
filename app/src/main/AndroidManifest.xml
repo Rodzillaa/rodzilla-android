@@ -75,6 +75,11 @@
         <activity
             android:name=".controller.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
-    </application>
 
+        <activity android:name=".controller.DataGraphsActivity"
+            android:label="Graphs">
+
+        </activity>
+
+    </application>
 </manifest>
