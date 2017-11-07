@@ -33,7 +33,9 @@ public class DataGraphsActivity extends AppCompatActivity
         implements DatePickerDialog.OnDateSetListener {
 
     private Date begin;
+    private long beginMilliseconds;
     private Date end;
+    private long endMilliseconds;
 
     @Override
     public void onDateSet(DatePickerDialog view,
@@ -62,16 +64,15 @@ public class DataGraphsActivity extends AppCompatActivity
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(begin);
+        beginMilliseconds = calendar.getTimeInMillis();
+        calendar.setTime(end);
+        endMilliseconds = calendar.getTimeInMillis();
 
         TextView graphTitle = (TextView) findViewById(R.id.ratSightingBarGraphTitle);
-        String titleText = "Number of Rat Sightings from " + calendar.get(Calendar.MONTH)
-                + "/" + calendar.get(Calendar.DAY_OF_MONTH) + "/"
-                + calendar.get(Calendar.YEAR) + " to ";
-        calendar.setTime(end);
-        titleText += calendar.get(Calendar.MONTH) + "/"
-                + calendar.get(Calendar.DAY_OF_MONTH) + "/"
-                + calendar.get(Calendar.YEAR);
+        String titleText = "Number of Rat Sightings from " + (monthOfYear) + "/" + dayOfMonth + "/" + year + " To "
+                + (monthOfYearEnd) + "/" + dayOfMonthEnd + "/" + yearEnd;
         graphTitle.setText(titleText);
+
 
         //Need to store data in a list (LinkedList)
         //using date range.
@@ -129,11 +130,10 @@ public class DataGraphsActivity extends AppCompatActivity
         ratSightingsBarChart.setVisibleXRange(Integer.parseInt(dateToNum.format(begin)),
                 Integer.parseInt(dateToNum.format(end)));
 
-//        XAxis xAxis = ratSightingsBarChart.getXAxis();
-//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-//        IAxisValueFormatter iavf = new GraphDateFormatter();
-//        xAxis.setValueFormatter(iavf);
-
+        XAxis xAxis = ratSightingsBarChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        IAxisValueFormatter iavf = new GraphDateFormatter(beginMilliseconds, endMilliseconds);
+        xAxis.setValueFormatter(iavf);
 
         ratSightingsBarChart.setData(barData);
         ratSightingsBarChart.invalidate(); // refresh
