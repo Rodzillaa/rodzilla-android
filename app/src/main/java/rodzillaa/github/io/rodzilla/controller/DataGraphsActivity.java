@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -20,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -33,9 +33,10 @@ public class DataGraphsActivity extends AppCompatActivity
         implements DatePickerDialog.OnDateSetListener {
 
     private Date begin;
-    private long beginMilliseconds;
+    private long beginMillis;
     private Date end;
-    private long endMilliseconds;
+    private long endMillis;
+    private static final String TAG = "DataGraphsActivity";
 
     @Override
     public void onDateSet(DatePickerDialog view,
@@ -64,9 +65,9 @@ public class DataGraphsActivity extends AppCompatActivity
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(begin);
-        beginMilliseconds = calendar.getTimeInMillis();
+        beginMillis = calendar.getTimeInMillis();
         calendar.setTime(end);
-        endMilliseconds = calendar.getTimeInMillis();
+        endMillis = calendar.getTimeInMillis();
 
         TextView graphTitle = (TextView) findViewById(R.id.ratSightingBarGraphTitle);
         String titleText = "Number of Rat Sightings from " + (monthOfYear) + "/" + dayOfMonth + "/" + year + " To "
@@ -74,7 +75,7 @@ public class DataGraphsActivity extends AppCompatActivity
         graphTitle.setText(titleText);
 
 
-        //Need to store data in a list (LinkedList)
+        //Need to store data in a list
         //using date range.
 
 
@@ -83,39 +84,56 @@ public class DataGraphsActivity extends AppCompatActivity
         } else {
             calendar.setTime(calendar.getTime());
         }
-        Log.d("DATA GRAPHS ACTIVITY", "date=" + begin);
+        Log.d(TAG, "Begin date begin=" + begin);
         int beginYear = calendar.get(Calendar.YEAR);
         int beginMonth = calendar.get(Calendar.MONTH);
         int beginDay = calendar.get(Calendar.DAY_OF_MONTH);
 
         List<RatSighting> ratList = RatSightingDatabase.getRatSightings();
-
-        HashMap<String, Integer> ratCount = new HashMap<>();
+        ArrayList<Date> dateList = new ArrayList<>();
+        Log.d(TAG, "rat list size: " + ratList.size());
+        HashMap<Date, Integer> ratCount = new HashMap<>();
         //Enumerating the rat sightings for each day in time range.
         for (RatSighting sighting : ratList) {
             calendar.setTime(sighting.getDate());
             int rYear = calendar.get(Calendar.YEAR);
             int rMonth = calendar.get(Calendar.MONTH);
             int rDay = calendar.get(Calendar.DAY_OF_MONTH);
-            if (sighting.getDate().compareTo(begin) >= 0
-                    && sighting.getDate().compareTo(end) <= 0) {
-                if (ratCount.containsKey("" + rYear + rMonth + rDay)) {
-                    ratCount.put("" + rYear + rMonth + rDay,
-                            ratCount.get("" + rYear + rMonth + rDay) + 1);
+            Log.d(TAG, "sighting date: " + rYear + "/" + rMonth + "/" + rDay);
+            Date simpleDate = begin;
+            try {
+                simpleDate = format.parse(rYear + "/" + rMonth + "/" + rDay);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Log.d(TAG, "simpleDate: " + simpleDate);
+            if (simpleDate.compareTo(begin) >= 0
+                    && simpleDate.compareTo(end) <= 0) {
+                Log.d(TAG, "Date Comparison Logic: True");
+                if (dateList.contains(simpleDate)) {
+                    ratCount.put(simpleDate,
+                            ratCount.get(simpleDate) + 1);
+                    Log.d(TAG, "date count +1: " + simpleDate);
                 } else {
-                    ratCount.put("" + rYear + rMonth + rDay, 1);
+                    ratCount.put(simpleDate, 1);
+                    dateList.add(simpleDate);
+                    Log.d(TAG, "adding date to date list: " + simpleDate);
                 }
             }
         }
 
+        Collections.sort(dateList);
+
           //iterate over each rat sighting and store it in the below ArrayList object
         float count = 0;
         List<BarEntry> entries = new ArrayList<>();
-        for (String key: ratCount.keySet()) {
+        for (Date d: dateList) {
+            Log.d(TAG, "date in date list: " + d.toString());
             // 1st parameter in BarEntry object is 0f, 1f, 2f, ...
             // 2nd parameter in BarEntry object is the data (i.e. rat sighting count)
             //entries.add(new BarEntry(count, sighting.getYValue()));
-            entries.add(new BarEntry(count, ratCount.get(key)));
+            entries.add(new BarEntry(count, ratCount.get(d)));
             // ratCount.get(key))
             count++;
 
@@ -132,7 +150,7 @@ public class DataGraphsActivity extends AppCompatActivity
 
         XAxis xAxis = ratSightingsBarChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        IAxisValueFormatter iavf = new GraphDateFormatter(beginMilliseconds, endMilliseconds);
+        IAxisValueFormatter iavf = new GraphDateFormatter(beginMillis, endMillis, dateList.size());
         xAxis.setValueFormatter(iavf);
 
         ratSightingsBarChart.setData(barData);
