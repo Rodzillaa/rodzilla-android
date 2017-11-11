@@ -33,9 +33,7 @@ public class DataGraphsActivity extends AppCompatActivity
         implements DatePickerDialog.OnDateSetListener {
 
     private Date begin;
-    private long beginMillis;
     private Date end;
-    private long endMillis;
     private static final String TAG = "DataGraphsActivity";
 
     @Override
@@ -58,6 +56,8 @@ public class DataGraphsActivity extends AppCompatActivity
         }
         Toast.makeText(getApplicationContext(), date, Toast.LENGTH_LONG).show();
 
+        long beginMillis;
+        long endMillis;
         BarChart ratSightingsBarChart = (BarChart) findViewById(R.id.ratSightingsBarChart);
         Description description = new Description();
         description.setText("");

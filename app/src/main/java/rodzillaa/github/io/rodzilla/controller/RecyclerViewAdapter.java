@@ -3,19 +3,15 @@ package rodzillaa.github.io.rodzilla.controller;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rodzillaa.github.io.rodzilla.R;
 import rodzillaa.github.io.rodzilla.model.RatSighting;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Customized ReclyclerViewAdapter to format RatSightings
@@ -44,7 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      * Class that implements a click listener and is
      * customized to include rat sighting data fields.
      */
-    class SightingOnClickListener implements View.OnClickListener {
+    private class SightingOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             int itemPosition = recyclerView.getChildPosition(v);
@@ -84,8 +80,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView v = (TextView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.rat_sighting, parent, false);
         v.setOnClickListener(new SightingOnClickListener());
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
