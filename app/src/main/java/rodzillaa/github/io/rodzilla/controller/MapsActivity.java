@@ -3,7 +3,6 @@ package rodzillaa.github.io.rodzilla.controller;
 import android.app.DatePickerDialog;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -17,7 +16,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
 import rodzillaa.github.io.rodzilla.R;
 import rodzillaa.github.io.rodzilla.model.RatSighting;
@@ -34,9 +32,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private long startdate;
     private long enddate;
-    Calendar myCalendar = Calendar.getInstance();
-
-    DatePickerDialog.OnDateSetListener pickStart = new DatePickerDialog.OnDateSetListener() {
+    private Calendar myCalendar = Calendar.getInstance();
+    private DatePickerDialog.OnDateSetListener pickStart = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             myCalendar.set(Calendar.YEAR, year);
@@ -47,7 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     };
 
-    DatePickerDialog.OnDateSetListener pickEnd = new DatePickerDialog.OnDateSetListener() {
+    private DatePickerDialog.OnDateSetListener pickEnd = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             myCalendar.set(Calendar.YEAR, year);

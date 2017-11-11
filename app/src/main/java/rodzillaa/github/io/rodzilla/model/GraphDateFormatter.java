@@ -3,13 +3,9 @@ package rodzillaa.github.io.rodzilla.model;
 import android.util.Log;
 
 import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.utils.ViewPortHandler;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class GraphDateFormatter implements IAxisValueFormatter {
     private long begin;
@@ -29,9 +25,9 @@ public class GraphDateFormatter implements IAxisValueFormatter {
         // "value" represents the position of the label on the axis (x or y)
         long dateInterval = (long) (begin + (((end - begin) * (value/axisMax))));
         //Log.d("GraphDateFormatter", "getlabelcount: " + axis.getLabelCount());
-        Log.d("GraphDateFormatter", "value: " + new Float(value).toString());
-        Log.d("GraphDateFormatter", "max: " + new Float(axis.getAxisMaximum()).toString());
-        Log.d("GraphDateFormatter", "date in ms: " + new Float(dateInterval).toString());
+        Log.d("GraphDateFormatter", "value: " + Float.toString(value));
+        Log.d("GraphDateFormatter", "max: " + Float.toString(axis.getAxisMaximum()));
+        Log.d("GraphDateFormatter", "date in ms: " + Float.toString(dateInterval));
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(dateInterval);
